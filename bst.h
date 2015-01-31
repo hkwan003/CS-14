@@ -17,6 +17,8 @@ template < typename Value >
 class BST {
 	class Node { // binary tree node
 	public:
+		Node* root;
+		int count;
 		Node* left;
 		Node* right;
 		Value value;
@@ -28,20 +30,44 @@ class BST {
 		bool isInternal() { return left != nil && right != nil; }
 		bool isExternal() { return left != nil || right != nil; }
 		bool isLeaf() { return left == nil && right == nil; }
-		int height() {
+		int height() 
+		{
+			if(ptr == 0)
+			{
+				return -1;
+			}
+			else
+			{
+				return Find_Height(root);
+			}
+		}
 			// returns the height of the subtree rooted at this node
 			// FILL IN
-		}
-		int size() {
+		int size() 
+		{
 			// returns the size of the subtree rooted at this node,
 			// FILL IN
 		}
+		int Find_Height(Node* ptr)
+		{
+			int Lft = Find_Height(ptr.left);
+			int Rht = Find_Height(ptr.right);
+			if(Lft > Rht)
+			{
+				return Lft + 1;
+			}
+			else
+			{
+				return Rht + 1;
+			}	
+				
+		}
 	}; // Node
 	// const Node* nil; // later nil will point to a sentinel node.
-	Node* root;
-	int count;
 public:
-	int size() {
+	int size() 
+	{
+		
 		// size of the overall tree.
 		// FILL IN
 	}
